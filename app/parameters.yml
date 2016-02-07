@@ -1,0 +1,12 @@
+bd:
+  host:
+  user:
+  pass:
+  port:
+
+
+ftp:
+    host:
+    user:
+    pass:
+    port:

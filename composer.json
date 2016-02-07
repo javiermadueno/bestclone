@@ -1,0 +1,22 @@
+{
+    "name": "javi/bcreduc",
+    "description": "BestClone",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "javiermadueno",
+            "email": "javiermadueno@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "": "src/"}
+    },
+    "require": {
+        "phpseclib/phpseclib": "^2.0",
+        "symfony/http-foundation": "^3.0",
+        "monolog/monolog": "^1.17",
+        "symfony/yaml": "^3.0",
+        "twig/twig": "^1.24",
+        "phpunit/phpunit": "^5.2"
+    }
+}
