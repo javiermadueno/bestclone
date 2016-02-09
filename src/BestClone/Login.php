@@ -42,13 +42,15 @@ class Login
     {
         $SQL = "select ID, Usuario, Contrasena, Nivel From Usuarios where Usuario = :user and Activa = 1";
         $stmt = $this->db->consulta($SQL);
-        $stmt->bindParam('user', $user);
+        $stmt->bindValue('user', $user, \PDO::PARAM_STR);
 
         if(!$stmt->execute()) {
+            echo print_r($stmt->errorInfo());
             return false;
         }
 
         if($stmt->rowCount() == 0) {
+            echo "No se ha encontrado usuario {$user}";
             return false;
         }
 

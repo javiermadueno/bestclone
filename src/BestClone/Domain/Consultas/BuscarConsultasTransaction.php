@@ -37,7 +37,11 @@ class BuscarConsultasTransaction
             ->consyltasGateway
             ->buscarConsultas($user, $desde, $hasta);
 
-        return $this->twig->render('Consultas/tabla_busqueda_consultas.html.twig', ['consultas' => $consultas]);
+        return $this
+            ->twig
+            ->render('Consultas/tabla_busqueda_consultas.html.twig', [
+                    'consultas' => $consultas
+                ]);
     }
 
 }

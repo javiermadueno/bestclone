@@ -16,7 +16,7 @@ class ConsultasGateway extends Gateway
 {
 
 
-    private $pasos = [
+    private $rowsets = [
         "CCAAResultado",
         "ProvResultado",
         "MuniResultado",
@@ -25,7 +25,7 @@ class ConsultasGateway extends Gateway
         "CallResultado",
         "DistResultado",
         "GisXResultado",
-        "Consulta"
+        "Resultado"
     ];
 
 
@@ -63,26 +63,27 @@ class ConsultasGateway extends Gateway
 
     /**
      * @param $user
-     * @param $consulta
+     * @param int $consulta
      *
      * @return array|null
      */
-    public function cargarConsulta($user, $consulta)
+    public function cargarConsulta($user, $consulta = 0)
     {
         $stmt = $this->db->prepare(
             "exec spCargaConsulta :user, :consulta"
         );
 
         $stmt->bindValue(':user', $user);
-        $stmt->bindValue(':consulta', $consulta);
+        $stmt->bindValue(':consulta', $consulta, \PDO::PARAM_INT);
 
         if (!$stmt->execute()) {
+            echo print_r($stmt->errorInfo());
             return null;
         }
 
         $result = [];
 
-        foreach ($this->pasos as $paso) {
+        foreach ($this->rowsets as $paso) {
             $rowset = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             $result[$paso] = $rowset;
             if (!$stmt->nextRowset()) {

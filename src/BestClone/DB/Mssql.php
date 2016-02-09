@@ -68,9 +68,13 @@ class Mssql implements DBInterface
      */
     function conectar()
     {
+        if($this->conn instanceof \PDO) {
+            return 1;
+        }
+
         try{
             $dsn = "dblib:dbname={$this->database};host={$this->host}";
-            $dsn = "odbc:mssql";
+            //$dsn = "odbc:mssql";
             $this->conn = new \PDO($dsn, $this->user, $this->pass);
         } catch(\PDOException $ex) {
             return 0;
