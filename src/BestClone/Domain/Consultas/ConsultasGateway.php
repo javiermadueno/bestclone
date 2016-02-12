@@ -11,6 +11,7 @@ namespace BestClone\Domain\Consultas;
 
 use BestClone\DB\Gateway;
 use Symfony\Component\HttpFoundation\Request;
+use PDO;
 
 class ConsultasGateway extends Gateway
 {
@@ -40,6 +41,24 @@ class ConsultasGateway extends Gateway
             "exec spGuardaConsulta :ip, :user, :consulta, :nombre, :observaciones, :campos, :orden, :filtro, :id"
         );
 
+        /**
+        $stmt = $this->db->query(
+            "exec spGuardaConsulta
+                {$request->getClientIp()},
+                {$request->get('User')},
+                {$request->get('Consulta')},
+                {$request->get('Nombre')},
+                {$request->get('Observaciones')},
+                {$request->get('Campos')},
+                {$request->get('Orden')},
+                {$request->get('Filtro')},
+                @ID"
+        );
+
+        $stmt = $this->db->query("SELECT @ID")
+         */
+
+
         $id = 0;
 
         $stmt->bindValue('ip', $request->getClientIp());
@@ -50,15 +69,17 @@ class ConsultasGateway extends Gateway
         $stmt->bindValue('campos', $request->get('Campos'));
         $stmt->bindValue('orden', $request->get('Orden'));
         $stmt->bindValue('filtro', $request->get('Filtro'));
-        $stmt->bindParam('id', $id, \PDO::PARAM_INT|\PDO::PARAM_INPUT_OUTPUT, 32);
+        $stmt->bindParam('id', $id, PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT, 4000);
 
         if (!$stmt->execute()) {
             return print_r($stmt->errorInfo());
         }
 
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        //$stmt->bindColumn(1, $id, \PDO::PARAM_INT);
+        $result = $stmt->fetchAll();
 
-        return $result['ID'];
+
+        return $result;
     }
 
     /**
@@ -94,6 +115,13 @@ class ConsultasGateway extends Gateway
         return $result;
     }
 
+    /**
+     * @param $user
+     * @param $desde
+     * @param $hasta
+     *
+     * @return array
+     */
     public function buscarConsultas($user, $desde, $hasta)
     {
         $stmt = $this->db->prepare(
@@ -114,6 +142,28 @@ class ConsultasGateway extends Gateway
         }
 
         return $res;
+    }
+
+    /**
+     * @param $user
+     * @param $consulta
+     *
+     * @return bool
+     */
+    public function borrarConsulta($user, $consulta)
+    {
+        $sql = "EXEC spBorrarConsulta :user, :consulta";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindValue('user', $user);
+        $stmt->bindValue('consulta', $consulta);
+
+        if(!$stmt->execute()) {
+            return false;
+        }
+
+        return true;
     }
 
     private function prepareDate($date = '')

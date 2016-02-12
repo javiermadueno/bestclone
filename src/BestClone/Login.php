@@ -10,6 +10,7 @@ namespace BestClone;
 
 use BestClone\DB\DBInterface;
 use BestClone\DB\Mssql;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Login
@@ -24,17 +25,54 @@ class Login
      */
     private $session;
 
+    /**
+     * @var Request
+     */
+    private $request;
 
-    public function  __construct(DBInterface $DBInterface = null)
+
+    /**
+     * @param DBInterface $db
+     * @param Request     $request
+     */
+    public function  __construct(DBInterface $db, Request $request)
     {
-        global $db, $session;
         $this->db = $db;
-        $this->session = $session;
+        $this->request = $request;
+        $this->session = $request->getSession();
+    }
+
+    /**
+     * @param $user
+     * @param $pass
+     *
+     * @return bool
+     */
+    public function checkUserPassword($user, $pass)
+    {
+        if (isset($user) && isset($pass)) {
+            $pass = md5($pass);
+            return $this->login($user, $pass);
+        }
+
+        $user = $this->session->get('user');
+        $pass = $this->session->get('pass');
+
+        if (!isset($user) && !isset($pass)) {
+            $this->invaliateSession();
+            return false;
+        }
+
+        if ((strpos(strtoupper($this->request->getUri()), 'DESCARGA') > 0) && ($this->session->get('nivel') != 2)) {
+           return false;
+        }
+
+        return true;
     }
 
     /**
      * @param null|string $user
-     * @param null $pass
+     * @param null        $pass
      *
      * @return bool
      */
@@ -44,13 +82,13 @@ class Login
         $stmt = $this->db->consulta($SQL);
         $stmt->bindValue('user', $user, \PDO::PARAM_STR);
 
-        if(!$stmt->execute()) {
+        if (!$stmt->execute()) {
             echo print_r($stmt->errorInfo());
+
             return false;
         }
 
-        if($stmt->rowCount() == 0) {
-            echo "No se ha encontrado usuario {$user}";
+        if ($stmt->rowCount() == 0) {
             return false;
         }
 
@@ -70,6 +108,11 @@ class Login
         $this->session->set('user', $datos['Usuario']);
         $this->session->set('pass', md5($datos['Contrasena']));
         $this->session->set('nivel', $datos['Nivel']);
+    }
+
+    private function invaliateSession()
+    {
+        $this->session->invalidate();
     }
 
 }

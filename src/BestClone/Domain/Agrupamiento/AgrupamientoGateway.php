@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: javi
- * Date: 9/2/16
- * Time: 1:02
- */
 
 namespace BestClone\Domain\Agrupamiento;
 
