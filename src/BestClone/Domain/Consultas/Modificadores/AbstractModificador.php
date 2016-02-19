@@ -95,6 +95,11 @@ abstract class AbstractModificador implements ModificadorInterface
         $this->twig = $twig;
     }
 
+    protected function throwException(\PDOStatement $stmt)
+    {
+        throw new \RuntimeException("Error al ejecutar la consulta '{$stmt->queryString}'. Error: " . print_r($stmt->errorInfo()));
+    }
+
 
 
 
