@@ -22,6 +22,10 @@ use BestClone\Domain\Consultas\Modificadores\CodigoPostal\AddCodigoPostal;
 use BestClone\Domain\Consultas\Modificadores\CodigoPostal\DelCodigoPostal;
 use BestClone\Domain\Consultas\Modificadores\CodigoPostal\DellAllCodigoPostal;
 use BestClone\Domain\Consultas\Modificadores\CodigoPostal\ViewCodigoPostal;
+use BestClone\Domain\Consultas\Modificadores\Distrito\AddDistrito;
+use BestClone\Domain\Consultas\Modificadores\Distrito\DelAllDistrito;
+use BestClone\Domain\Consultas\Modificadores\Distrito\DelDistrito;
+use BestClone\Domain\Consultas\Modificadores\Distrito\ViewDistrito;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddAllLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\DelAllLocalidad;
@@ -59,6 +63,10 @@ class ModificaConsultaFactory
         'AddCall'    => AddCalle::class,
         'DelCall'    => DelCalle::class,
         'DelCallAll' => DellAllCalle::class,
+        'ViewDist'   => ViewDistrito::class,
+        'AddDist'    => AddDistrito::class,
+        'DelDist'    => DelDistrito::class,
+        'DelDistAll' => DelAllDistrito::class,
 
     ];
 
