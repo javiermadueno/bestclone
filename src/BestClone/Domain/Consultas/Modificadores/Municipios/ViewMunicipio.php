@@ -24,11 +24,7 @@ class ViewMunicipio extends AbstractModificadorMunicipio
             $stmt = $this->municipios();
         }
 
-        if(!$stmt->execute()) {
-            $this->throwException($stmt);
-        }
-
-        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $this->execute($stmt);
     }
 
     private function municipiosPorNumeroHabitantes()

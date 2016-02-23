@@ -19,11 +19,7 @@ class DelAllComunidadAutonoma extends AbstractModificador
         $stmt->bindValue(2, $request->get('User'));
         $stmt->bindValue(3, $request->get('Consulta'));
 
-        if(false == $stmt->execute()){
-            throw new \RuntimeException("Error al ejecutar la consulta '{$sql}'. Error: " . print_r($stmt->errorInfo()));
-        }
-
-        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $this->execute($stmt);
     }
 
     public function getResult()

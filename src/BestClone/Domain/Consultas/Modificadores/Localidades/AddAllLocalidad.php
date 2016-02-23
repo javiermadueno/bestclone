@@ -9,6 +9,23 @@
 namespace BestClone\Domain\Consultas\Modificadores\Localidades;
 
 
-class AddAllLocalidad {
+class AddAllLocalidad extends AbstractModificadorLocalidades
+{
+
+    public function modify()
+    {
+        $request = $this->getRequest();
+
+        $sql = "exec spAddLocaAll ?, ?, ?, ?";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindValue(1, $request->get('IP'));
+        $stmt->bindValue(2, $request->get('User'));
+        $stmt->bindValue(3, $request->get('ID'));
+        $stmt->bindValue(4, $request->get('Consulta'));
+
+        $this->execute($stmt);
+    }
 
 } 

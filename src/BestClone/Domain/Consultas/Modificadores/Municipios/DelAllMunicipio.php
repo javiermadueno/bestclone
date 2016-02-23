@@ -23,11 +23,7 @@ class DelAllMunicipio extends AbstractModificadorMunicipio
         $stmt->bindValue(2, $this->getRequest()->get('User'));
         $stmt->bindValue(1, $this->getRequest()->get('Consulta'));
 
-        if(!$stmt->execute()) {
-            $this->throwException($stmt);
-        }
-
-        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $this->execute($stmt);
 
     }
 

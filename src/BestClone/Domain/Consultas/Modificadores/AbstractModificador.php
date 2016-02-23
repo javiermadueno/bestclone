@@ -100,6 +100,15 @@ abstract class AbstractModificador implements ModificadorInterface
         throw new \RuntimeException("Error al ejecutar la consulta '{$stmt->queryString}'. Error: " . print_r($stmt->errorInfo()));
     }
 
+    protected function execute(\PDOStatement $stmt)
+    {
+        if(!$stmt->execute()) {
+            $this->throwException($stmt);
+        }
+
+        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 
 
 

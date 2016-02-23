@@ -24,11 +24,7 @@ class AddProvincia extends AbstractModificadorProvincia
         $stmt = $this->db->prepare($sql);
         $this->bindValues($stmt);
 
-        if(!$stmt->execute()){
-            throw new \RuntimeException("Error al ejecutar la consulta '{$sql}'. Error: " . print_r($stmt->errorInfo()));
-        }
-
-        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $this->execute($stmt);
 
     }
 

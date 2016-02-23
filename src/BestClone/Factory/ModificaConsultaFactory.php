@@ -14,6 +14,11 @@ use BestClone\Domain\Consultas\Modificadores\AbstractModificador;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\AddComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelAllComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelComunidadAutonoma;
+use BestClone\Domain\Consultas\Modificadores\Localidades\AddAllLocalidad;
+use BestClone\Domain\Consultas\Modificadores\Localidades\AddLocalidad;
+use BestClone\Domain\Consultas\Modificadores\Localidades\DelAllLocalidad;
+use BestClone\Domain\Consultas\Modificadores\Localidades\DelLocalidad;
+use BestClone\Domain\Consultas\Modificadores\Localidades\ViewLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Provincias\AddAllProvincia;
 use BestClone\Domain\Consultas\Modificadores\Provincias\AddProvincia;
 use BestClone\Domain\Consultas\Modificadores\Provincias\DelAllProvincia;
@@ -32,7 +37,13 @@ class ModificaConsultaFactory
         'AddProv'    => AddProvincia::class,
         'AddProvAll' => AddAllProvincia::class,
         'DelProv'    => DelProvincia::class,
-        'DelProvAll' => DelAllProvincia::class
+        'DelProvAll' => DelAllProvincia::class,
+        'ViewLoca'   => ViewLocalidad::class,
+        'AddLoca'    => AddLocalidad::class,
+        'AddLocaAll' => AddAllLocalidad::class,
+        'DelLoca'    => DelLocalidad::class,
+        'DelLocaAll' => DelAllLocalidad::class
+
     ];
 
     /**
@@ -55,7 +66,7 @@ class ModificaConsultaFactory
      */
     public function __construct(DBInterface $db, \Twig_Environment $twig)
     {
-        $this->db = $db;
+        $this->db   = $db;
         $this->twig = $twig;
     }
 

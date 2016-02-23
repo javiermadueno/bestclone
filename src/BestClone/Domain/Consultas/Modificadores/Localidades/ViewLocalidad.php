@@ -9,6 +9,21 @@
 namespace BestClone\Domain\Consultas\Modificadores\Localidades;
 
 
-class ViewLocalidad {
+class ViewLocalidad extends  AbstractModificadorLocalidades
+{
+
+    public function modify()
+    {
+        $request = $this->getRequest();
+
+        $sql = "exec spViewLoca ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(1, $request->get('ID'));
+
+       $this->execute($stmt);
+    }
+
+
 
 } 

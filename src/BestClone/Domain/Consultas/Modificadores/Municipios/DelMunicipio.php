@@ -25,11 +25,7 @@ class DelMunicipio extends AbstractModificadorMunicipio
         $stmt->bindValue(3, $this->getRequest()->get('ID'));
         $stmt->bindValue(4, $this->getRequest()->get('Consulta'));
 
-        if(!$stmt->execute()) {
-            $this->throwException($stmt);
-        }
-
-        $this->result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $this->execute($stmt);
     }
 
 } 
