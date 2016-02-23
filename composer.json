@@ -12,6 +12,7 @@
         "psr-0": { "": "src/"}
     },
     "require": {
+        "php": ">=5.5",
         "phpseclib/phpseclib": "^2.0",
         "symfony/http-foundation": "^3.0",
         "monolog/monolog": "^1.17",
