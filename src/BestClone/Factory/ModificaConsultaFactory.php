@@ -14,6 +14,10 @@ use BestClone\Domain\Consultas\Modificadores\AbstractModificador;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\AddComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelAllComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelComunidadAutonoma;
+use BestClone\Domain\Consultas\Modificadores\CodigoPostal\AddCodigoPostal;
+use BestClone\Domain\Consultas\Modificadores\CodigoPostal\DelCodigoPostal;
+use BestClone\Domain\Consultas\Modificadores\CodigoPostal\DellAllCodigoPostal;
+use BestClone\Domain\Consultas\Modificadores\CodigoPostal\ViewCodigoPostal;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddAllLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\DelAllLocalidad;
@@ -42,7 +46,12 @@ class ModificaConsultaFactory
         'AddLoca'    => AddLocalidad::class,
         'AddLocaAll' => AddAllLocalidad::class,
         'DelLoca'    => DelLocalidad::class,
-        'DelLocaAll' => DelAllLocalidad::class
+        'DelLocaAll' => DelAllLocalidad::class,
+        'ViewCCPP'   => ViewCodigoPostal::class,
+        'AddCCPP'    => AddCodigoPostal::class,
+        'DelCCPP'    => DelCodigoPostal::class,
+        'DelCCPPAll' => DellAllCodigoPostal::class,
+
 
     ];
 
