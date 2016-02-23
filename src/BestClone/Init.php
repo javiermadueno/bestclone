@@ -9,13 +9,13 @@
 namespace BestClone;
 
 
-use BestClone\DB\Mssql;
+use BestClone\DB\DBInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Init
 {
     /**
-     * @var Mssql
+     * @var DBInterface
      */
     private $db;
 
@@ -24,11 +24,11 @@ class Init
      */
     private $session;
 
-    /**
-     * @param Mssql            $db
+    /***
+     * @param DBInterface $db
      * @param SessionInterface $session
      */
-    public function __construct(Mssql $db, SessionInterface $session)
+    public function __construct(DBInterface $db, SessionInterface $session)
     {
         $this->db = $db;
         $this->session = $session;
@@ -41,9 +41,11 @@ class Init
     public function init()
     {
         $user = $this->session->get('id');
-        $SQL = "exec spInitTablas :user";
+        $SQL = "exec spInitTablas ?";
         $stmt = $this->db->prepare($SQL);
-        $stmt->bindParam(':user', $user);
+
+        $stmt->bindValue(1, $user);
+
         if (!$stmt->execute()) {
             return false;
         }
