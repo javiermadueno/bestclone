@@ -17,7 +17,7 @@ abstract class AbstractModificadorDistrito extends AbstractModificador
         return $this->getTwig()->render('Consultas/tabla.html.twig', [
             'parametros' => $this->result,
             'funcion'    => 'DelDist',
-            'indice'     => 0
+            'indice' => 1
         ]);
     }
 

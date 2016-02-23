@@ -19,7 +19,7 @@ abstract class AbstractModificadorCodigoPostal extends AbstractModificador
         return $this->getTwig()->render('Consultas/tabla.html.twig', [
             'parametros' => $this->result,
             'funcion'    => 'DelCCPP',
-            'indice'     => 0
+            'indice' => 1
         ]);
     }
 

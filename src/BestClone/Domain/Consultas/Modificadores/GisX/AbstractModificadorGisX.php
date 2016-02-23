@@ -18,7 +18,7 @@ abstract class AbstractModificadorGisX extends AbstractModificador
         return $this->getTwig()->render('Consultas/tabla.html.twig', [
             'parametros' => $this->result,
             'funcion'    => 'DelGisX',
-            'indice'     => 0
+            'indice' => 1
         ]);
     }
 
