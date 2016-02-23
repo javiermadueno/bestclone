@@ -26,11 +26,21 @@ use BestClone\Domain\Consultas\Modificadores\Distrito\AddDistrito;
 use BestClone\Domain\Consultas\Modificadores\Distrito\DelAllDistrito;
 use BestClone\Domain\Consultas\Modificadores\Distrito\DelDistrito;
 use BestClone\Domain\Consultas\Modificadores\Distrito\ViewDistrito;
+use BestClone\Domain\Consultas\Modificadores\GisX\AddAllGisX;
+use BestClone\Domain\Consultas\Modificadores\GisX\AddGisX;
+use BestClone\Domain\Consultas\Modificadores\GisX\DelAllGisX;
+use BestClone\Domain\Consultas\Modificadores\GisX\DelGisX;
+use BestClone\Domain\Consultas\Modificadores\GisX\ViewGisX;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddAllLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\AddLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\DelAllLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\DelLocalidad;
 use BestClone\Domain\Consultas\Modificadores\Localidades\ViewLocalidad;
+use BestClone\Domain\Consultas\Modificadores\Municipios\AddAllMunicipio;
+use BestClone\Domain\Consultas\Modificadores\Municipios\AddMunicipio;
+use BestClone\Domain\Consultas\Modificadores\Municipios\DelAllMunicipio;
+use BestClone\Domain\Consultas\Modificadores\Municipios\DelMunicipio;
+use BestClone\Domain\Consultas\Modificadores\Municipios\ViewMunicipio;
 use BestClone\Domain\Consultas\Modificadores\Provincias\AddAllProvincia;
 use BestClone\Domain\Consultas\Modificadores\Provincias\AddProvincia;
 use BestClone\Domain\Consultas\Modificadores\Provincias\DelAllProvincia;
@@ -67,7 +77,16 @@ class ModificaConsultaFactory
         'AddDist'    => AddDistrito::class,
         'DelDist'    => DelDistrito::class,
         'DelDistAll' => DelAllDistrito::class,
-
+        'ViewGisX'   => ViewGisX::class,
+        'AddGisX'    => AddGisX::class,
+        'AddGisXAll' => AddAllGisX::class,
+        'DelGisX'    => DelGisX::class,
+        'DelGisXAll' => DelAllGisX::class,
+        'ViewMuni'   => ViewMunicipio::class,
+        'AddMuni'    => AddMunicipio::class,
+        'AddMuniAll' => AddAllMunicipio::class,
+        'DelMuni'    => DelMunicipio::class,
+        'DelMuniAll' => DelAllMunicipio::class,
     ];
 
     /**
