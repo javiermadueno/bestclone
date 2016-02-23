@@ -11,6 +11,10 @@ namespace BestClone\Factory;
 
 use BestClone\DB\DBInterface;
 use BestClone\Domain\Consultas\Modificadores\AbstractModificador;
+use BestClone\Domain\Consultas\Modificadores\Calle\AddCalle;
+use BestClone\Domain\Consultas\Modificadores\Calle\DelCalle;
+use BestClone\Domain\Consultas\Modificadores\Calle\DellAllCalle;
+use BestClone\Domain\Consultas\Modificadores\Calle\ViewCalle;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\AddComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelAllComunidadAutonoma;
 use BestClone\Domain\Consultas\Modificadores\CAutonomas\DelComunidadAutonoma;
@@ -51,7 +55,10 @@ class ModificaConsultaFactory
         'AddCCPP'    => AddCodigoPostal::class,
         'DelCCPP'    => DelCodigoPostal::class,
         'DelCCPPAll' => DellAllCodigoPostal::class,
-
+        'ViewCall'   => ViewCalle::class,
+        'AddCall'    => AddCalle::class,
+        'DelCall'    => DelCalle::class,
+        'DelCallAll' => DellAllCalle::class,
 
     ];
 
@@ -60,10 +67,6 @@ class ModificaConsultaFactory
      */
     private $db;
 
-    /**
-     * @var Request
-     */
-    private $request;
 
     /**
      * @var \Twig_Environment
@@ -71,7 +74,8 @@ class ModificaConsultaFactory
     private $twig;
 
     /**
-     * @param DBInterface $db
+     * @param DBInterface       $db
+     * @param \Twig_Environment $twig
      */
     public function __construct(DBInterface $db, \Twig_Environment $twig)
     {

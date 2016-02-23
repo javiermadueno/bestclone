@@ -3,20 +3,19 @@
  * Created by PhpStorm.
  * User: jmadueno
  * Date: 23/02/2016
- * Time: 12:10
+ * Time: 14:37
  */
 
-namespace BestClone\Domain\Consultas\Modificadores\CodigoPostal;
+namespace BestClone\Domain\Consultas\Modificadores\Calle;
 
 
-class AddCodigoPostal extends AbstractModificadorCodigoPostal
+class AddCalle extends AbstractModificadorCalle
 {
-
     public function modify()
     {
         $request = $this->getRequest();
 
-        $sql = "exec spAddCCPP ?, ?, ?, ?";
+        $sql = "exec spAddCall ?, ?, ?, ?";
 
         $stmt = $this->db->prepare($sql);
 
@@ -26,8 +25,6 @@ class AddCodigoPostal extends AbstractModificadorCodigoPostal
         $stmt->bindValue(4, $request->get('Consulta'));
 
         $this->execute($stmt);
-
-        //TODO: Ejecutar para obtener alerta
 
     }
 
